@@ -1,46 +1,79 @@
-<p>signup works!</p>
-<form class="example-form" [formGroup]="signupForm">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      formControlName="email"
-      placeholder="Ex. pat@example.com"
-    />
-    <mat-error
-      *ngIf="signupForm.hasError('email') && !signupForm.hasError('required')"
-    >
-      Please enter a valid email address
-    </mat-error>
-    <mat-error
-      *ngIf="
-        signupForm.controls['email'].invalid &&
-        signupForm.controls['email'].touched
-      "
-    >
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>State</mat-label>
-    <mat-select>
-      <mat-option>None</mat-option>
-      <mat-option *ngFor="let state of states" [value]="state">{{
-        state
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <h4>native html select</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Select your car</mat-label>
-    <select matNativeControl id="mySelectId">
-      <option value="" disabled selected></option>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
+<!-- <section class="container">
+  <div class=" container  ">
+  <form class="center p-5">
+    <div class="mb-3">
+      <label  class="form-label">Name</label>
+      <input type="text" class="form-control"  >
+      </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control"  >
+      </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+      <option selected>Open this select menu</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
     </select>
-  </mat-form-field>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</section> -->
+<section id="signup " class="d-flex align-items-center justify-content-center h-100 container ">
+<form    [formGroup]="userForm" class="form-container  p-5 ">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="name">
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="name?.errors?.['required']">
+    Name is required.
+  </div>
+  <div *ngIf="name?.errors?.['pattern']">
+    Name must be English characters and no special characters allowed.
+  </div>
+ <!--  <div *ngIf="name.errors?.['forbiddenName']">
+    Name cannot be Bob.
+  </div> -->
+</div>
+  </div>
+    <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword2" class="form-label"> Confirm Password</label>
+          <input type="password" class="form-control" id="">
+        </div>
+      <div class="col-md-12 mb-3">
+        <label for="" class="form-label"> Nationality</label>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Signup</button>
+
 </form>
+</section>

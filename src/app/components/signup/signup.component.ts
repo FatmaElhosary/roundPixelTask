@@ -1,76 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  signupForm:FormGroup = new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required,Validators.email]),
-  });
-  states: string[] = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Carolina',
-    'North Dakota',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming',
-  ];
-  constructor() {}
+
+
+  selectedValue: string="";
+
+
+
+  constructor(private _FormBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
-  get name(){
-    return this.signupForm.get('name');
+
+/*   siginupForm:FormGroup=new FormGroup({
+    first:new FormControl(null,[Validators.required,Validators.maxLength(8),Validators.minLength(3)]),
+    'last':new FormControl(null,[Validators.required,Validators.maxLength(8),Validators.minLength(3)]),
+    email:new FormControl(null,[Validators.required,Validators.email]),
+    'password':new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)]),
+    'repassword':new FormControl(null,[Validators.required])
+
+
+
+
+  }) */
+
+
+ /*   userForm = this._FormBuilder.group({
+    name: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
+    email: ['',[Validators.required,Validators.email]],
+    password: ['',[Validators.required,Validators.minLength(8)]],
+    confirmPassword: ['',[Validators.required]],
+    nationality: ['',[Validators.required]]
+  });
+ */
+
+  userForm = new FormGroup({
+    name:new FormControl ('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]),
+    email:new FormControl ('',[Validators.required]),
+    password:new FormControl ( '',[Validators.required,Validators.minLength(8)]),
+    confirmPassword:new FormControl ( '',[Validators.required]),
+    nationality:new FormControl ( '',[Validators.required])
+  },{updateOn:'blur'});
+
+  onSubmit() {
+   console.log('form data is ', this.userForm.value);
   }
-  get email(){
-    return this.signupForm.get('email');
-  }
+  get name() { return this.userForm.get('name'); }
+
+  get email() { return this.userForm.get('email'); }
 }
