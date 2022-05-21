@@ -1,69 +1,48 @@
-<!-- <section class="container">
-  <div class=" container  ">
-  <form class="center p-5">
-    <div class="mb-3">
-      <label  class="form-label">Name</label>
-      <input type="text" class="form-control"  >
-      </div>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control"  >
-      </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3">
-    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-      <option selected>Open this select menu</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-  </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-</section> -->
-<section id="signup " class="d-flex align-items-center justify-content-center h-100 container ">
+
+<section id="signup " class="d-flex align-items-center justify-content-center h-100 container col-md-6">
 <form    [formGroup]="userForm" class="form-container  p-5 ">
-  <div class="mb-3">
+  <div class="mb-3 form-group">
     <label for="exampleFormControlInput1" class="form-label">Name</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="name">
+  </div>
     <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
     class="alert alert-danger">
 
   <div *ngIf="name?.errors?.['required']">
-    Name is required.
+    <p class="error-message text-danger"><span class="error-icon text-danger">!
+    </span>  Name is required.</p>
+  
   </div>
-  <div *ngIf="name?.errors?.['pattern']">
-    Name must be English characters and no special characters allowed.
+  <div *ngIf="userForm.get('name')?.errors?.['pattern']">
+    <p class="error-message text-danger"><span class="error-icon text-danger">!
+    </span> Name must be English characters and no special characters allowed. </p>
+   
   </div>
  <!--  <div *ngIf="name.errors?.['forbiddenName']">
     Name cannot be Bob.
   </div> -->
 </div>
-  </div>
-    <div class="mb-3">
+ 
+    <div class="mb-3 form-group">
           <label for="exampleFormControlInput1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
         </div>
 
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1">
         </div>
+        <div *ngIf="userForm.get('password')?.errors && userForm.get('password')?.touched">
+          <p class="error-message text-danger"><span class="error-icon text-danger">!
+              </span>{{'Please enter your valid Password.'}}</p>
+          </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
           <label for="exampleInputPassword2" class="form-label"> Confirm Password</label>
           <input type="password" class="form-control" id="">
         </div>
-      <div class="col-md-12 mb-3">
+      <div class="col-md-12 mb-3 form-group">
         <label for="" class="form-label"> Nationality</label>
         <select class="form-select" aria-label="Default select example">
           <option selected>Open this select menu</option>

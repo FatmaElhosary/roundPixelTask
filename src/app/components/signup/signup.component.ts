@@ -35,22 +35,22 @@ export class SignupComponent implements OnInit {
   }) */
 
 
- /*   userForm = this._FormBuilder.group({
+  userForm = this._FormBuilder.group({
     name: ['',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
     email: ['',[Validators.required,Validators.email]],
     password: ['',[Validators.required,Validators.minLength(8)]],
     confirmPassword: ['',[Validators.required]],
     nationality: ['',[Validators.required]]
-  });
- */
+  },{updateOn:'blur'});
+ 
 
-  userForm = new FormGroup({
+/*   userForm = new FormGroup({
     name:new FormControl ('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]),
     email:new FormControl ('',[Validators.required]),
     password:new FormControl ( '',[Validators.required,Validators.minLength(8)]),
     confirmPassword:new FormControl ( '',[Validators.required]),
     nationality:new FormControl ( '',[Validators.required])
-  },{updateOn:'blur'});
+  },{updateOn:'blur'}); */
 
   onSubmit() {
    console.log('form data is ', this.userForm.value);
