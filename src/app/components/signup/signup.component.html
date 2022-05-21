@@ -2,83 +2,42 @@
 <section id="signup " class="d-flex align-items-center justify-content-center h-100 container col-md-6">
 <form    [formGroup]="userForm" (ngSubmit)="onSubmit()"  class="form-container  p-5 ">
   <div class="mb-3 form-group">
-    <label for="exampleFormControlInput1" class="form-label">Name</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" formControlName="name">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label> Enter your Name</mat-label>
+      <input matInput placeholder=""  formControlName="name">
+      <mat-error *ngIf="name?.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
   </div>
-    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-    class="alert alert-danger">
-
-  <div *ngIf="name?.errors?.['required']">
-    <p class="error-message text-danger"><span class="error-icon text-danger">!
-    </span>  Name is required.</p>
-  
-  </div>
-  <div *ngIf="userForm.get('name')?.errors?.['pattern']">
-    <p class="error-message text-danger"><span class="error-icon text-danger">!
-    </span> Name must be English characters and no special characters allowed. </p>
-   
-  </div>
-  <div *ngIf="name?.errors?.['forbiddenName']">
-    <p class="error-message text-danger"><span class="error-icon text-danger">!
-    </span> Name must be English characters . </p>
-  </div> 
-</div>
- 
         <div class="mb-3 form-group">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+          <mat-form-field  class="full-width" appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
+            <mat-error *ngIf="email?.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
         </div>
-        <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
-          <div *ngIf="userForm.get('email')?.errors?.['required']" >
-            <p class="error-message text-danger"><span class="error-icon text-danger">!
-                </span>email is required .</p>
-            </div>     
-          </div>
         <div class="mb-3 form-group">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" formControlName="password">
+          <mat-form-field class="full-width" appearance="fill" w-100>
+            <mat-label>Enter your Password</mat-label>
+            <input matInput  formControlName="password" required type="password">
+            <mat-error *ngIf="password?.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
         </div>
-
-        <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
-        <div *ngIf="userForm.get('password')?.errors?.['forbiddenName']" >
-          <p class="error-message text-danger"><span class="error-icon text-danger">!
-              </span>Password shouldn't contains arabic char .</p>
-          </div>
-          <div *ngIf="userForm.get('password')?.errors?.['required']" >
-            <p class="error-message text-danger"><span class="error-icon text-danger">!
-                </span>Password is required.</p>
-            </div>
-            <div *ngIf="userForm.get('password')?.errors?.['minlenth']" >
-              <p class="error-message text-danger"><span class="error-icon text-danger">!
-                  </span>Password minlenth =8 .</p>
-              </div>
-        </div>
-
         <div class="mb-3 form-group">
-          <label for="confirmPassword" class="form-label"> Confirm Password</label>
-          <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+          <mat-form-field  class="full-width" appearance="fill" w-100>
+            <mat-label>Enter confirm Password</mat-label>
+            <input matInput  formControlName="confirmPassword" required type="password">
+            <mat-error *ngIf="confirmPassword?.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
         </div>
-        <div *ngIf="userForm.errors?.['misMatch'] && userForm.get('confirmPassword')?.touched">
-          <p class="error-message text-danger"><span class="error-icon text-danger">! 
-              </span> Password dose not match.</p>
-      </div>  
-      <div class="col-md-12 mb-3 form-group">
-        <label for="" class="form-label"> Nationality</label>
-    <!--    
-       <select class="form-select" aria-label="Default select example" formControlName="nationality">       
-        <option  *ngFor="let nationality of nationalities" value="{{nationality.countryName}}">{{nationality.countryName}}</option>
-        </select> 
-      -->
-        <mat-form-field appearance="fill">
+      <div class="mb-3 form-group">
+           <mat-form-field class="full-width" appearance="fill">
           <mat-label>Nationality</mat-label>
-          <mat-select placeholder="nationality" formControlName="nationality" >
-         <mat-option *ngFor="let nationality of nationalities" [value]="nationality.countryName">{{ nationality.countryName }}</mat-option> 
-      
+          <mat-select placeholder="nationality" formControlName="nationality" [(value)]="defaultCountry"  >
+         <mat-option *ngFor="let nationality of nationalities"  [value]="nationality.countryName"  >{{ nationality.countryName }}</mat-option> 
           </mat-select>
         </mat-form-field>
       </div>
-
-      <button type="submit" class="btn btn-primary" >Signup</button>
+      <button mat-button color="primary" >Signup</button>
       <!-- [disabled]="!userForm.valid" -->
 </form>
 </section>
