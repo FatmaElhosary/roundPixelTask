@@ -6,7 +6,9 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 /** A user's name can't match the given regular expression */
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
+    if(!control.value)
+    return null;
     const forbidden = nameRe.test(control.value.trim());
-    return forbidden ? {forbiddenName: {value: control.value}} : null;
+    return forbidden ? {'containArabic': true} : null;
   };
 }
