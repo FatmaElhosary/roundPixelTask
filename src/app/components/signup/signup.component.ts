@@ -21,8 +21,7 @@ export class SignupComponent implements OnInit {
   defaultCountry: string = '';
   userIp: string = '';
   nationalities: Countries[] = [];
-  value:boolean=false;
-  subscription: any;
+   subscription: any;
   constructor(
     private _FormBuilder: FormBuilder,
     private _MyApisService: MyApisService,
@@ -150,15 +149,13 @@ export class SignupComponent implements OnInit {
   removeArabic(event: any) {
     let req = /[\u0600-\u06FF]/;
     if (req.test(event.key)) {
-      /* const test = this.userForm.controls['name'];
+       const test = this.userForm.controls['name'];
       console.log("a",test.value);
       const a = test.value.slice(0,-1);
       console.log("b",a);
-      this.userForm.controls['name'].setValue(a); */
-      this.value=true;
-
+      this.userForm.controls['name'].setValue(a);
     }else{
-      this.value=false;
+
     }
   }
   /////////////////////////////////////////////////////////////
