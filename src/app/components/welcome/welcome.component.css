@@ -14,7 +14,10 @@
 .text span {
   display: block;
 }
-
+.bg{
+  height: 100vh;
+  background: linear-gradient(to bottom, #e385e0, #635bdb);
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
