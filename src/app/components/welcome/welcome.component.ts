@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private _SharedDataService:SharedDataService) { }
+    name:string=this._SharedDataService.sharedUserName;
   ngOnInit(): void {
   }
 

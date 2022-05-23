@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Countries } from 'src/app/interfaces/countries';
 import { MyApisService } from 'src/app/services/my-apis.service';
-import { PasswordMatchValidator } from 'src/app/shared/cross-validator';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { identityRevealedValidator } from 'src/app/shared/cross-validators-password.service';
 import { forbiddenNameValidator } from 'src/app/shared/forbidden-name.directive';
 
 @Component({
@@ -25,7 +24,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private _FormBuilder: FormBuilder,
     private _MyApisService: MyApisService,
-    _router: Router
+    private _router: Router,
+    private _SharedDataService:SharedDataService
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
       confirmPassword: ['', [Validators.required]],
       nationality: ['', [Validators.required]],
     },
-    { Validators: [PasswordMatchValidator] }
+    { validators: identityRevealedValidator }
   );
   ////////////////////////////////////////////////
   ///handling errors///////////////
@@ -105,8 +105,10 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     console.log('form data is ', this.userForm.value);
-
-    // this.router.navigateByUrl('/');
+    this._SharedDataService.sharedUserName=this.name?.value;
+    console.log(this._SharedDataService.sharedUserName);
+    
+     this._router.navigateByUrl('/welcome');
   }
   ///////////////////////////////////////////////////
   getCountries() {
@@ -158,7 +160,9 @@ export class SignupComponent implements OnInit {
 
     }
   }
-  /////////////////////////////////////////////////////////////
+  ////////////////////////////
+
+   /////////////////////////////////////////////////////////////
   get name() {
     return this.userForm.get('name');
   }
