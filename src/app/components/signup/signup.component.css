@@ -29,8 +29,8 @@ form{
   background: #ddd;
   text-align: center;
 }
-.box h1 {
-  color: white;
+.box h1,button {
+  color: #D4CDAC;
   text-transform: uppercase;
   font-weight: 500;
 }

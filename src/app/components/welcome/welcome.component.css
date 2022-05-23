@@ -1,42 +1,38 @@
-:root {
-  --animate-delay: 0.25s;
-  font-size: 2.5vmin;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0px 10rem;
-  display: flex;
-  align-items: center;
-}
-
-
-.container {
-  position: absolute;
-  top: 0;
-}
 
 .text {
   color: #ffe3e5;
   font-size: 9rem;
   letter-spacing: 3px;
+  text-align: center;
   font-family: "Bitter", serif;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
 }
 .text span {
   display: block;
 }
 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  
+.text{font-size: 2rem;}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .text{font-size: 3rem;}
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
