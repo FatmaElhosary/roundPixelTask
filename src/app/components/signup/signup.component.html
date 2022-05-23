@@ -1,50 +1,98 @@
+<section
+  id="signup "
+  class="d-flex align-items-center justify-content-center h-100 container col-12 col-md-6 "
+>
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="form-container p-1 p-md-5"
+  >
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label> Enter your Name</mat-label>
+        <input
+          matInput
+          placeholder=""
+          formControlName="name"
+          id="nameIn"
 
-<section id="signup " class="d-flex align-items-center justify-content-center h-100 container col-md-6">
-<form    [formGroup]="userForm" (ngSubmit)="onSubmit()"  class="form-container  p-5 ">
-  <div class="mb-3 form-group">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label> Enter your Name</mat-label>
-      <input matInput placeholder=""  formControlName="name" id="nameIn" (keypress)="removeArabic($event)"  >
-      <mat-error *ngIf="name?.invalid && name?.touched">{{getNameErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </div>
-        <div class="mb-3 form-group">
-          <mat-form-field  class="full-width" appearance="fill">
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" formControlName="email" required>
-            <mat-error *ngIf="email?.invalid ">{{getEmailErrorMessage()}}</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="mb-3 form-group">
-          <mat-form-field class="full-width" appearance="fill" w-100>
-            <mat-label>Enter your Password</mat-label>
-            <input matInput  formControlName="password" required type="password">
-            <mat-error *ngIf="password?.hasError('required')">Password is required</mat-error>
-            <mat-error *ngIf="password?.hasError('minlength')">Password must have at least 8 characters</mat-error>
-            <mat-error *ngIf="password?.hasError('containArabic')">Password Should Not Contains Arabic Char</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="mb-3 form-group">
-          <mat-form-field  class="full-width" appearance="fill" w-100>
-            <mat-label>Enter confirm Password</mat-label>
-            <input matInput  formControlName="confirmPassword" required type="password">
-            <!-- <mat-error *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">Passwords don't bmn match</mat-error> -->
-            <mat-error *ngIf="confirmPassword?.hasError('required')">Please confirm your password</mat-error>
-          </mat-form-field>
-        </div>
-      <div class="mb-3 form-group">
-           <mat-form-field class="full-width" appearance="fill">
-          <mat-label>Nationality</mat-label>
-          <mat-select placeholder="nationality" formControlName="nationality" [(value)]="defaultCountry"  >
-         <mat-option *ngFor="let nationality of nationalities"  [value]="nationality.countryName"  >{{ nationality.countryName }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-<!--        <div *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)" class="cross-validation-error-message alert alert-danger">
-        password mismatsh 
+          (input)="removeArabicFrominput($event)"
+        />
+        <mat-error *ngIf="name?.invalid && name?.touched">{{
+          getNameErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngIf="email?.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill" w-100>
+        <mat-label>Enter your Password</mat-label>
+        <input matInput formControlName="password" required type="password" />
+        <mat-error *ngIf="password?.hasError('required')"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password?.hasError('minlength')"
+          >Password must have at least 8 characters</mat-error
+        >
+        <mat-error *ngIf="password?.hasError('containArabic')"
+          >Password Should Not Contains Arabic Char</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill" w-100>
+        <mat-label>Enter confirm Password</mat-label>
+        <input
+          matInput
+          formControlName="confirmPassword"
+          required
+          type="password"
+        />
+        <!-- <mat-error *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">Passwords don't bmn match</mat-error> -->
+        <mat-error *ngIf="confirmPassword?.hasError('required')"
+          >Please confirm your password</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nationality</mat-label>
+        <mat-select
+          placeholder="nationality"
+          formControlName="nationality"
+          [(value)]="defaultCountry"
+        >
+          <mat-option
+            *ngFor="let nationality of nationalities"
+            [value]="nationality.countryName"
+            >{{ nationality.countryName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!--        <div *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)" class="cross-validation-error-message alert alert-danger">
+        password mismatsh
     </div>  -->
-     <mat-error *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)">Passwords don't match</mat-error>
-      <button mat-button color="primary"  [disabled]="!userForm.valid" >Signup</button>
-      <!-- [disabled]="!userForm.valid" -->
-</form>
+    <mat-error
+      *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)"
+      >Passwords don't match</mat-error
+    >
+    <button mat-button color="primary" [disabled]="!userForm.valid">
+      Signup
+    </button>
+    <!-- [disabled]="!userForm.valid" -->
+  </form>
 </section>

@@ -20,7 +20,7 @@ validate the form so that
 * nationality should be selected from countries data
 * pasword doesnt accept arabic characters and min 8 char
 * password confirmation must  = password
-* all inputs are requierd
+* all inputs are requierd 
 
 ## 4
 * after validating the form navigate the user to welcome component 

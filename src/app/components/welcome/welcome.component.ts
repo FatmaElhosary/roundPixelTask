@@ -10,6 +10,7 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private _SharedDataService:SharedDataService) { }
     name:string=this._SharedDataService.sharedUserName;
+    //name:any=localStorage.getItem('name');
   ngOnInit(): void {
   }
 

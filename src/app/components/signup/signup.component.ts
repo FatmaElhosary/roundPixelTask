@@ -10,6 +10,8 @@ import { MyApisService } from 'src/app/services/my-apis.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { identityRevealedValidator } from 'src/app/shared/cross-validators-password.service';
 import { forbiddenNameValidator } from 'src/app/shared/forbidden-name.directive';
+import { makeRandomId } from 'src/app/shared/make-random-id';
+import { removeArabic } from 'src/app/shared/remove-arabic';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +23,7 @@ export class SignupComponent implements OnInit {
   userIp: string = '';
   nationalities: Countries[] = [];
    subscription: any;
+   removeArabicFrominput=removeArabic;
   constructor(
     private _FormBuilder: FormBuilder,
     private _MyApisService: MyApisService,
@@ -107,8 +110,14 @@ export class SignupComponent implements OnInit {
     console.log('form data is ', this.userForm.value);
     this._SharedDataService.sharedUserName=this.name?.value;
     console.log(this._SharedDataService.sharedUserName);
-    
+///////////make random id for user ////////////////////
+     const id= makeRandomId(25) ;
+     ////instead of user token///
+     localStorage.setItem('userId', `${id}`);
+     //////////////////save name in refresh///////////
+     localStorage.setItem('name', `${this.name?.value}` )
      this._router.navigateByUrl('/welcome');
+
   }
   ///////////////////////////////////////////////////
   getCountries() {
@@ -148,7 +157,7 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-  removeArabic(event: any) {
+ /*  removeArabic(event: any) {
     let req = /[\u0600-\u06FF]/;
     if (req.test(event.key)) {
        const test = this.userForm.controls['name'];
@@ -159,9 +168,19 @@ export class SignupComponent implements OnInit {
     }else{
 
     }
-  }
+  } */
   ////////////////////////////
+ /*  public removeArabic(event: any) {
+    //console.log(event.target.value);
+    //////////arabic char regx/////////////
+    const pattern = /[\u0600-\u06FF]/;
+    //let inputChar = String.fromCharCode(event.charCode)
+    if (pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[\u0600-\u06FF]/g, "");
+      // invalid character, prevent input
 
+    }
+  } */
    /////////////////////////////////////////////////////////////
   get name() {
     return this.userForm.get('name');

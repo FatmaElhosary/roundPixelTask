@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SharedDataService {
-  sharedUserName:string="" ;
+  sharedUserName:any=localStorage.getItem('name') ;
   constructor() { }
 }
