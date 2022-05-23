@@ -19,3 +19,18 @@ form{
 .full-width {
   width: 100%;
 }
+.box {
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ddd;
+  text-align: center;
+}
+.box h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
