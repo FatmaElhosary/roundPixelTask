@@ -29,6 +29,22 @@
     </div>
     <div class="mb-3 form-group">
       <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nationality</mat-label>
+        <mat-select
+          placeholder="nationality"
+          formControlName="nationality"
+          [(value)]="defaultCountry"
+        >
+          <mat-option
+            *ngFor="let nationality of nationalities"
+            [value]="nationality.countryName"
+            >{{ nationality.countryName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="mb-3 form-group">
+      <mat-form-field class="full-width" appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input
           matInput
@@ -71,22 +87,7 @@
         >
       </mat-form-field>
     </div>
-    <div class="mb-3 form-group">
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Nationality</mat-label>
-        <mat-select
-          placeholder="nationality"
-          formControlName="nationality"
-          [(value)]="defaultCountry"
-        >
-          <mat-option
-            *ngFor="let nationality of nationalities"
-            [value]="nationality.countryName"
-            >{{ nationality.countryName }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-    </div>
+ 
     <!--        <div *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)" class="cross-validation-error-message alert alert-danger">
         password mismatsh
     </div>  -->
