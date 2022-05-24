@@ -97,7 +97,7 @@ export class SignupComponent implements OnInit {
       errMse = 'You must enter a password';
     }
     if (this.password?.hasError('minLength')) {
-      errMse = 'Password Length >= 8';
+      errMse = 'Password Length error ';
     }
     if (this.password?.hasError('containArabic')) {
       errMse = 'No Arabic Char Allowed ';
@@ -157,30 +157,7 @@ export class SignupComponent implements OnInit {
       }
     );
   }
- /*  removeArabic(event: any) {
-    let req = /[\u0600-\u06FF]/;
-    if (req.test(event.key)) {
-       const test = this.userForm.controls['name'];
-      console.log("a",test.value);
-      const a = test.value.slice(0,-1);
-      console.log("b",a);
-      this.userForm.controls['name'].setValue(a);
-    }else{
 
-    }
-  } */
-  ////////////////////////////
- /*  public removeArabic(event: any) {
-    //console.log(event.target.value);
-    //////////arabic char regx/////////////
-    const pattern = /[\u0600-\u06FF]/;
-    //let inputChar = String.fromCharCode(event.charCode)
-    if (pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[\u0600-\u06FF]/g, "");
-      // invalid character, prevent input
-
-    }
-  } */
    /////////////////////////////////////////////////////////////
   get name() {
     return this.userForm.get('name');

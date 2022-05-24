@@ -85,17 +85,21 @@
         <mat-error *ngIf="confirmPassword?.hasError('required')"
           >Please confirm your password</mat-error
         >
+        <mat-error
+        *ngIf="userForm.errors?.['misMAtch'] && confirmPassword?.touched "
+        >Passwords don't match</mat-error
+      >
       </mat-form-field>
     </div>
- 
+
     <!--        <div *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)" class="cross-validation-error-message alert alert-danger">
         password mismatsh
     </div>  -->
     <mat-error
-      *ngIf="userForm.errors?.['identityRevealed'] && (userForm.touched || userForm.dirty)"
+      *ngIf="userForm.errors?.['misMAtch']"
       >Passwords don't match</mat-error
     >
-    <button mat-button color="primary" [disabled]="!userForm.valid">
+    <button mat-button color="primary" class="btn-c" [disabled]="!userForm.valid">
       Signup
     </button>
     <!-- [disabled]="!userForm.valid" -->
