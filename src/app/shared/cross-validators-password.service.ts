@@ -14,5 +14,5 @@ export const identityRevealedValidator: ValidatorFn = (control: AbstractControl)
   // if(confirmPassword?.errors && !confirmPassword.errors['misMAtch']){
   //   return null;
   // }
-  return password && confirmPassword && password.value !== confirmPassword.value ? { 'misMAtch': true } : null;
+  return password && confirmPassword && password.value !== confirmPassword.value ? { misMAtch: true } : null;
 };
